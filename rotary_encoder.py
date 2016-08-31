@@ -17,9 +17,9 @@ try:
                 aState = GPIO.input(a)
                 if aState != aLastState:
                         if GPIO.input(b) != aState:
-                                counter -= 1
-                        else:
                                 counter += 1
+                        else:
+                                counter -= 1
                         print counter
                 aLastState = aState
                 sleep(0.01)
