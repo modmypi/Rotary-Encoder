@@ -17,7 +17,7 @@ try:
                 clkState = GPIO.input(clk)
                 dtState = GPIO.input(dt)
                 if clkState != clkLastState:
-                        if dtState != aState:
+                        if dtState != clkState:
                                 counter += 1
                         else:
                                 counter -= 1
