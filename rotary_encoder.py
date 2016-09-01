@@ -1,20 +1,20 @@
 from RPi import GPIO
 from time import sleep
 
-a = 17
-b = 18
+clk = 17
+dt = 18
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(a, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(b, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(clk, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(dt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
 counter = 0
-aLastState = GPIO.input(a)
+aLastState = GPIO.input(clk)
 
 try:
 
         while True:
-                aState = GPIO.input(a)
+                aState = GPIO.input(clk)
                 if aState != aLastState:
                         if GPIO.input(b) != aState:
                                 counter += 1
