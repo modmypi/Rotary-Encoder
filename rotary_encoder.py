@@ -1,27 +1,41 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Mon May 10 16:40:57 2021
+
+@author: nivethithakannan
+"""
 from RPi import GPIO
 from time import sleep
 
-clk = 17
-dt = 18
+PIN_CLK = 17
+PIN_DAT = 18
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(clk, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.setup(dt, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
+try:
+    GPIO.setup(PIN_CLK,GPIO.IN)
+    GPIO.setup(PIN_DAT,GPIO.IN)
+    GPIO.output(PIN_CLK,1)
+except:
+    print("ERROR. Unable to setup the configuration requested"  )                                   
+
+
+sleep(0.5)
 counter = 0
-clkLastState = GPIO.input(clk)
+clkLastState = GPIO.input(PIN_CLK)
 
 try:
 
         while True:
-                clkState = GPIO.input(clk)
-                dtState = GPIO.input(dt)
+                clkState = GPIO.input(PIN_CLK)
+                dtState = GPIO.input(PIN_DAT)
                 if clkState != clkLastState:
                         if dtState != clkState:
                                 counter += 1
                         else:
                                 counter -= 1
-                        print counter
+                        print(counter)
                 clkLastState = clkState
                 sleep(0.01)
 finally:
