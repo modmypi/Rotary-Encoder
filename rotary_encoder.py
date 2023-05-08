@@ -21,7 +21,7 @@ try:
                                 counter += 1
                         else:
                                 counter -= 1
-                        print counter
+                        print(counter)
                 clkLastState = clkState
                 sleep(0.01)
 finally:
